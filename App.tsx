@@ -1,118 +1,51 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React from "react";
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import { SafeAreaView, StatusBar, StyleSheet } from "react-native";
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
+import colors from "./src/theme/colors";
+import layout from "./src/theme/layout";
+import UploadFlightDataJson from "./src/screens/UploadJson";
+import { useFlightContext } from "./src/context/FlightContext";
+import Flights from "./src/screens/Flights";
+import CheapestFlightResult from "./src/screens/CheapestFlightResult";
 
 function App(): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+    const { state, dispatch } = useFlightContext();
+    const backgroundStyle = {
+        backgroundColor: colors.white,
+        flex: 1
+    };
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+    const hasUploadedJsonData = state.uploadJsonFile.result !== null;
+    const foundCheapestFlightResult =
+        state.cheapestFlightResult.shortestRoutes.length > 0;
 
-  return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
-      />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
+    const configureScreen = () => {
+        if (foundCheapestFlightResult) {
+            return <CheapestFlightResult />;
+        } else if (hasUploadedJsonData) {
+            return <Flights />;
+        } else {
+            return <UploadFlightDataJson />;
+        }
+    };
+
+    return (
+        <SafeAreaView style={backgroundStyle}>
+            <StatusBar
+                barStyle="light-content"
+                backgroundColor={colors.primary}
+            />
+
+            {configureScreen()}
+        </SafeAreaView>
+    );
 }
 
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
+    container: {
+        margin: layout.pad.lg
+    }
 });
 
 export default App;
