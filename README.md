@@ -1,79 +1,71 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# React Native Application for JSON Data Processing
 
-# Getting Started
+## Overview
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+This application is built using React Native and designed to receive input from a JSON file, process the data, and display the result in the app's UI. The app supports Android and provides basic functionality for handling flight data from a JSON file, such as uploading and displaying flight information. It also includes unit tests to ensure the correct functionality of key components.
 
-## Step 1: Start the Metro Server
+## Features
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+- Upload a JSON file containing flight data.
+- Process and display flight data in a user-friendly interface.
+- Show the cheapest flight option when available.
+- Includes unit tests for core components.
 
-To start Metro, run the following command from the _root_ of your React Native project:
+## Prerequisites
+
+Before running the project, make sure you have the following installed:
+
+1. **Node.js** (Recommended version: 18.x.x)
+2. **Yarn** (for package management)
+3. **Android Studio** (for Android Emulator)
+4. **React Native CLI** (if not using Expo)
+
+## Setup Instructions
+
+### 1. Clone the Repository
+
+Start by cloning this repository to your local machine.
 
 ```bash
-# using npm
-npm start
-
-# OR using Yarn
-yarn start
+git clone https://github.com/yudistiafirman/MyFlight
+cd MyFlight
 ```
 
-## Step 2: Start your Application
-
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
+### 2. Install Dependencies
+Make sure you have all the necessary dependencies installed by running:
 
 ```bash
-# using npm
-npm run android
+yarn install
+```
+This will install all the required dependencies, including React Native and testing libraries.
 
-# OR using Yarn
+### 3. Running the App on Android Emulator
+1. Start Android Emulator:
+- Open Android Studio.
+- Go to the AVD Manager and select a virtual device to start the Android Emulator.
+
+2.Start the React Native App:
+- Run the following command in your terminal to launch the app on the Android Emulator:
+```bash
 yarn android
 ```
+This will build the project and start the app on the emulator.
 
-### For iOS
+
+### 4. Using The App
+
+Once the app is running, you can:
+
+- Upload JSON: You can upload a JSON file containing flight data. The app will process and display the flight information.
+- View Cheapest Flight: If applicable, the app will calculate and display the cheapest flight option available.
+
+### 5. Running the Unit Tests
+
+This project includes unit tests for the core components. To run the tests, use the following command:
 
 ```bash
-# using npm
-npm run ios
-
-# OR using Yarn
-yarn ios
+yarn test
 ```
+This will run all the tests and output the results in your terminal.
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
-
-## Step 3: Modifying your App
-
-Now that you have successfully run the app, let's modify it.
-
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
-
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
-
-## Congratulations! :tada:
-
-You've successfully run and modified your React Native App. :partying_face:
-
-### Now what?
-
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
-
-# Troubleshooting
-
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
-
-# Learn More
-
-To learn more about React Native, take a look at the following resources:
-
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
